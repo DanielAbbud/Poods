@@ -218,6 +218,78 @@ const PRODUCTS = [
     description: "O ápice do luxo em pood, para ocasiões especiais.",
     flavors: ["Ouro comestível", "Trufa negra"]
   },
+  {
+    id: 25,
+    name: "Blvk 45k",
+    price: 249.90,
+    image: "assets/products/product_25.png",
+    category: "Clássicos",
+    description: "O clássico repaginado para os amantes de pood.",
+    flavors: ["Uva", "Menta"]
+  },
+  {
+    id: 26,
+    name: "Ignite v155 New edition",
+    price: 299.90,
+    image: "assets/products/product_26.png",
+    category: "Premium",
+    description: "Experiência premium com sabores intensos.",
+    flavors: ["Café expresso", "Chocolate belga"]
+  },
+  {
+    id: 27,
+    name: "Elfbar king 40k",
+    price: 349.90,
+    image: "assets/products/product_27.png",
+    category: "Edição Especial",
+    description: "Edição limitada para colecionadores.",
+    flavors: ["Champanhe rosé", "Baunilha bourbon"]
+  },
+  {
+    id: 28,
+    name: "Ignite Ice 400k",
+    price: 399.90,
+    image: "assets/products/product_28.png",
+    category: "Luxo",
+    description: "O ápice do luxo em pood, para ocasiões especiais.",
+    flavors: ["Ouro comestível", "Trufa negra"]
+  },
+  {
+    id: 29,
+    name: "Ignite mix v400",
+    price: 59.90,
+    image: "assets/products/product_29.png",
+    category: "Mini",
+    description: "Perfeito para lembranças e kits.",
+    flavors: ["Uva", "Menta", "Coco"]
+  },
+  {
+    id: 30,
+    name: "Ignite v250",
+    price: 79.90,
+    image: "assets/products/product_30.png",
+    category: "Mini",
+    description: "Compacto e prático para qualquer ocasião.",
+    flavors: ["Limão siciliano", "Hortelã"]
+  },
+  {
+    id: 31,
+    name: "Ignite v80",
+    price: 99.90,
+    image: "assets/products/product_31.png",
+    category: "Mini",
+    description: "Compacto e prático para qualquer ocasião.",
+    flavors: ["Limão siciliano", "Hortelã"]
+  },
+  {
+    id: 32,
+    name: "Lost Mary mo20k",
+    price: 119.90,
+    image: "assets/products/product_32.png",
+    category: "Mini",
+    description: "Compacto e prático para qualquer ocasião.",
+    flavors: ["Limão siciliano", "Hortelã"]
+  }
 
 ];
 
