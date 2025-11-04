@@ -103,7 +103,7 @@ const PRODUCTS = [
   },
   {
     id: 12,
-    name: "LOST MARY 305k",
+    name: "LOST MARY 30k",
     price: 199.90,
     image: "assets/products/product_12.png",
     category: "Saudáveis",
@@ -344,6 +344,7 @@ function render() {
         <h3 class="title">${p.name}</h3>
         <p class="price">${money(p.price)}</p>
         ${p.description ? `<p class="desc">${p.description}</p>` : ""}
+
         ${Array.isArray(p.flavors) && p.flavors.length ? `
           <div class="variant">
             <label for="flavor-${p.id}">Sabor</label>
@@ -352,7 +353,24 @@ function render() {
             </select>
           </div>
         ` : ""}
+
+        <div class="payrow">
+          <label for="pay-${p.id}" style="font-size:12px;color:var(--muted)">Pagamento</label>
+          <select id="pay-${p.id}" class="paymethod">
+            <option value="Pix">Pix</option>
+            <option value="Cartão">Cartão</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Transferência">Transferência</option>
+          </select>
+        </div>
+
+        <div style="margin-top:8px">
+          <label for="addr-${p.id}" style="font-size:12px;color:var(--muted)">Endereço / Observações</label>
+          <input id="addr-${p.id}" class="address" type="text" placeholder="Rua, número, bairro / Obs. (opcional)" />
+        </div>
+
       </div>
+
       <div class="controls">
         <input class="qty" type="number" min="1" value="1" aria-label="Quantidade" />
         <button class="buy"><span>Comprar no WhatsApp</span></button>
@@ -362,6 +380,7 @@ function render() {
   `).join("");
 }
 
+
 function attachEvents() {
   grid.addEventListener("click", (e) => {
     const btn = e.target.closest(".buy");
@@ -369,21 +388,39 @@ function attachEvents() {
     const card = e.target.closest(".card");
     const id = Number(card.dataset.id);
     const product = PRODUCTS.find(p => p.id === id);
+
+    // quantidade
     const qtyInput = card.querySelector(".qty");
     const qty = Math.max(1, Number(qtyInput.value) || 1);
+
+    // sabor (opcional)
     const flavorSel = card.querySelector(".flavor");
     const flavor = flavorSel ? flavorSel.value : null;
 
-    const lines = [
-      "Olá! Quero comprar:",
-      `• Produto: ${product.name}`,
-      `• Preço unitário: ${money(product.price)}`,
-      `• Quantidade: ${qty}`,
-      `• Total: ${money(product.price * qty)}`
-    ];
-    if (flavor) lines.splice(2, 0, `• Sabor: ${flavor}`);
+    // forma de pagamento
+    const paySel = card.querySelector(".paymethod");
+    const payment = paySel ? paySel.value : "Não informado";
 
-    const msg = enc(lines.join("\n") + "\n\nEnviei pelo site.");
+    // endereço/observações
+    const addrInput = card.querySelector(".address");
+    const address = addrInput ? (addrInput.value || "").trim() : "";
+
+    // monta linhas de mensagem
+    const linhas = [
+      "Olá! Quero comprar:",
+      `• Produto: ${product.name}`
+    ];
+    if (flavor) linhas.push(`• Sabor: ${flavor}`);
+    linhas.push(`• Preço unitário: ${money(product.price)}`);
+    linhas.push(`• Quantidade: ${qty}`);
+    linhas.push(`• Total: ${money(product.price * qty)}`);
+    linhas.push(`• Forma de pagamento: ${payment}`);
+    if (address) linhas.push(`• Endereço/Obs.: ${address}`);
+
+    linhas.push("");
+    linhas.push("Enviei pelo site.");
+
+    const msg = enc(linhas.join("\\n"));
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     window.open(url, "_blank");
   });
@@ -393,6 +430,7 @@ function attachEvents() {
     el.addEventListener("change", render);
   });
 }
+
 
 mountCategories(PRODUCTS);
 render();
