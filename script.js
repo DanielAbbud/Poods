@@ -407,19 +407,18 @@ function attachEvents() {
 
     // monta linhas de mensagem
     const linhas = [
-      "Olá! Quero comprar:",
-      `• Produto: ${product.name}`
-    ];
-    if (flavor) linhas.push(`• Sabor: ${flavor}`);
-    linhas.push(`• Preço unitário: ${money(product.price)}`);
-    linhas.push(`• Quantidade: ${qty}`);
-    linhas.push(`• Total: ${money(product.price * qty)}`);
-    linhas.push(`• Forma de pagamento: ${payment}`);
-    if (address) linhas.push(`• Endereço/Obs.: ${address}`);
-
-    linhas.push("");
-    linhas.push("Enviei pelo site.");
-
+      "🧾 *Pedido pelo site*",
+      "-------------------------",
+      `• Produto: *${product.name}*`,
+      flavor ? `• Sabor: *${flavor}*` : null,
+      `• Preço unitário: *${money(product.price)}*`,
+      `• Quantidade: *${qty}*`,
+      `• Total: *${money(product.price * qty)}*`,
+      `• Forma de pagamento: *${payment}*`,
+      address ? `• Endereço/Obs.: ${address}` : null,
+      "",
+      "_Enviei pelo site._"
+    ].filter(Boolean);
     const msg = enc(linhas.join("\\n"));
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     window.open(url, "_blank");
