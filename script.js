@@ -360,7 +360,6 @@ function render() {
             <option value="Pix">Pix</option>
             <option value="Cartão">Cartão</option>
             <option value="Dinheiro">Dinheiro</option>
-            <option value="Transferência">Transferência</option>
           </select>
         </div>
 
