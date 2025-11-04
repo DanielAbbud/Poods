@@ -408,21 +408,24 @@ function attachEvents() {
     // monta linhas de mensagem
     const linhas = [
       "🧾 *Pedido pelo site*",
-      "-------------------------",
-      `• Produto: *${product.name}*`,
-      flavor ? `• Sabor: *${flavor}*` : null,
-      `• Preço unitário: *${money(product.price)}*`,
-      `• Quantidade: *${qty}*`,
-      `• Total: *${money(product.price * qty)}*`,
-      `• Forma de pagamento: *${payment}*`,
-      address ? `• Endereço/Obs.: ${address}` : null,
+      "----------------------------",
+      `📦 *Produto:* ${product.name}`,
+      flavor ? `🍓 *Sabor:* ${flavor}` : null,
+      `💰 *Preço unitário:* ${money(product.price)}`,
+      `🔢 *Quantidade:* ${qty}`,
+      `💵 *Total:* ${money(product.price * qty)}`,
+      `💳 *Forma de pagamento:* ${payment}`,
+      address ? `📍 *Endereço/Obs.:* ${address}` : null,
       "",
-      "_Enviei pelo site._"
+      "_Enviado automaticamente pelo site._"
     ].filter(Boolean);
-    const msg = enc(linhas.join("\\n"));
+
+    // AQUI ESTÁ A MÁGICA — encodeURIComponent garante as quebras certinhas
+    const msg = encodeURIComponent(linhas.join("\n"));
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
     window.open(url, "_blank");
   });
+
 
   [searchInput, categoryFilter, sortSelect].forEach(el => {
     el.addEventListener("input", render);
