@@ -57,7 +57,37 @@
 
       <div id="grid" class="product-grid"></div>
     </section>
+
   </main>
+  <!-- Modal de senha do administrador -->
+  <div id="adminModal" class="admin-modal hidden">
+    <div class="admin-modal-backdrop"></div>
+    <div class="admin-modal-dialog">
+      <h2>Modo administrador</h2>
+      <p>Digite a senha para acessar as opções de estoque.</p>
+
+      <input type="password" id="adminPasswordInput" placeholder="Senha de administrador" autocomplete="off" />
+
+      <div class="admin-modal-actions">
+        <button type="button" id="adminCancelBtn" class="admin-btn secondary">
+          Cancelar
+        </button>
+        <button type="button" id="adminConfirmBtn" class="admin-btn primary">
+          Entrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Toast de notificações -->
+    <div id="toast" class="toast hidden">
+      <span id="toastText"></span>
+    </div>
+    
+    <footer class="site-footer">
+      ...
+    </footer>
+
 
   <footer class="site-footer">
     <div class="container footer-inner">
